@@ -1,0 +1,27 @@
+<h1>Products#home</h1>
+<h1>Hi raheel</h1>
+<h1>Products#home</h1>
+<%# <% =debug @products %> %
+<div>
+<%# <ul> %>
+    <% @products.each do |product|%>
+    <div> <strong><%=product.name%></strong>:</div>
+    <li> <strong><%=product.name%></strong>:</li>
+    <li><i><%=product.description%> </i></li>
+    <%end%>
+    <%# </ul> %>
+<p>Find me in app/views/products/home.html.erb</p>
+
+
+
+    <h1>Products</h1>
+
+<div id="products">
+  <% @products.each do |product| %>
+    <div>
+      <%= product.name %>
+    </div>
+  <% end %>
+</div>
+
+
