@@ -2,16 +2,6 @@
 <h1>Hi raheel</h1>
 <h1>Products#home</h1>
 <%# <% =debug @products %> %
-<div>
-<%# <ul> %>
-    <% @products.each do |product|%>
-    <div> <strong><%=product.name%></strong>:</div>
-    <li> <strong><%=product.name%></strong>:</li>
-    <li><i><%=product.description%> </i></li>
-    <%end%>
-    <%# </ul> %>
-<p>Find me in app/views/products/home.html.erb</p>
-
 
 
     <h1>Products</h1>
@@ -19,9 +9,32 @@
 <div id="products">
   <% @products.each do |product| %>
     <div>
-      <%= product.name %>
+      <%= link_to product.name, product_about_path(product.id) %>
     </div>
   <% end %>
 </div>
+
+
+
+<%# <h1>Creating the product :</h1> %>
+
+
+<h1>Creating the product :</h1>
+
+<%= link_to "New_Product", new_product_path %>
+
+<div id="products">
+  <% @products.each do |item| %>  
+
+  <div style= "border:1px solid gray;padding:10px;margin-bottom:10px;">
+    <%= link_to item.name, product_about_path(item.id) %>  
+    <p><%= item.description %> </p>  
+    </div>
+<%= link_to "Edit the product", edit_product_path(item.id) %>
+    <%end%>
+</div>
+<%# <%= link_to "Edit the product", product_path[:id] %> %>
+
+
 
 

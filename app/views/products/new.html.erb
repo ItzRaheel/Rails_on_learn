@@ -1,0 +1,48 @@
+<h1>NEw product</h1>
+
+<%= form_with model: @product do |form| %>
+
+<div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    </div>
+    <div>
+    
+    
+    <%= form.label :description%>
+    <%= form.text_field :description%>
+    
+    </div>
+    <div>
+        <%= form.submit %>
+    </div>
+    <%end%>
+
+    <%= link_to "home_Page", root_path %>
+ 
+ <%# <h1><%= @product.new_record? ? "Create Product" : "Edit Product"</h1> %> %>
+<%# <%= render "form" %> %>
+
+ 
+<%= render "form", product: @product %>
+<%= link_to "Cancel", products_path %>
+
+<%# 
+    <form action="/products" accept-charset="UTF-8" method="post">
+  <input type="hidden" name="authenticity_token" value="UHQSKXCaFqy_aoK760zpSMUPy6TMnsLNgbPMABwN1zpW-Jx6k-2mISiF0ulZOINmfxPdg5xMyZqdxSW1UK-H-Q" autocomplete="off">
+
+  <div>
+    <label for="product_name">Name</label>
+    <input type="text" name="product[name]" id="product_name">
+  </div>
+  <div>
+  <label for="product_description"> description</label>
+  <input type="text" name= "product[description]" id = "product_description">
+  </div>
+  <div>
+    <input type="submit" name="commit" value="Create Product" data-disable-with="Create Product">
+  </div>
+</form> %>
+
+
+

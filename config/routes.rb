@@ -1,15 +1,25 @@
 Rails.application.routes.draw do
   # get "products/home"
   # get "products/about"
-  root "products#login"
+  # root "products#login"
+  root "products#home"
+  resources :products
+
+
   
-  get "/home",to:"products#home"
-  get "/about",to:"products#about"
+  # get "/home",to:"products#home"
+  # get "home/about",to:"products#about"
+  # get "home/edit",to:"products#about"
+  # get "/new", to:"products#new"
+get 'home/about/:id', to: 'products#about', as: 'product_about'
+# get '/new/:id', to: 'products#new', as: 'product_new'
+
+# get '/products/:id/about', to: 'products#about', as: 'product_about'
+
 
 
 
   # get "/home",to:"pages#home"
-  resources :products
 
   # get "/products",to:"products#index"
 

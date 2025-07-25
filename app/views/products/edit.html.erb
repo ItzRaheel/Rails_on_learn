@@ -1,0 +1,27 @@
+
+<h1>Edit product</h1>
+
+<h1>NEw product</h1>
+
+<%= form_with model: @product,local:true  do |form| %>
+
+<div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    </div>
+    <div>
+    
+    
+    <%= form.label :description%>
+    <%= form.text_field :description%>
+    
+    </div>
+    <div>
+        <%= form.submit "update Product" %>
+    </div>
+    <%end%>
+    <h1><%= @product.new_record? ? "Create Product" : "Edit Product" %></h1>
+<%= render "form" %>
+
+<%= render "form", product: @product %>
+<%= link_to "Cancel", @product %>
