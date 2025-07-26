@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
+  
   # get "products/home"
   # get "products/about"
   # root "products#login"
   root "products#home"
+  
   resources :products
-
+  
+  devise_for :users
 
   
-  # get "/home",to:"products#home"
+  get "/home",to:"products#home"
   # get "home/about",to:"products#about"
   # get "home/edit",to:"products#about"
   # get "/new", to:"products#new"

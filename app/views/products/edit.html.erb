@@ -3,7 +3,7 @@
 
 <h1>NEw product</h1>
 
-<%= form_with model: @product,local:true  do |form| %>
+<!-- <%= form_with model: @product,local:true  do |form| %>
 
 <div>
     <%= form.label :name %>
@@ -19,9 +19,11 @@
     <div>
         <%= form.submit "update Product" %>
     </div>
-    <%end%>
+    <%end%> -->
     <h1><%= @product.new_record? ? "Create Product" : "Edit Product" %></h1>
 <%= render "form" %>
 
-<%= render "form", product: @product %>
+<p>samople</p>
+<!-- <%= render "form", product: @product %><%= render "form", product: @product %> -->
+
 <%= link_to "Cancel", @product %>

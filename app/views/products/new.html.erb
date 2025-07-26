@@ -17,11 +17,11 @@
         <%= form.submit %>
     </div>
     <%end%>
-
+    
     <%= link_to "home_Page", root_path %>
  
- <%# <h1><%= @product.new_record? ? "Create Product" : "Edit Product"</h1> %> %>
-<%# <%= render "form" %> %>
+ <h1><%= @product.new_record? ? "Create Product" : "Edit Product"</h1> %>
+<%= render "form" %>
 
  
 <%= render "form", product: @product %>

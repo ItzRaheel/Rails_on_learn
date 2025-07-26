@@ -1,8 +1,5 @@
-<h1>Products#home</h1>
-<h1>Hi raheel</h1>
-<h1>Products#home</h1>
-<%# <% =debug @products %> %
 
+<!-- <%# <% =debug @products %> % -->
 
     <h1>Products</h1>
 
@@ -14,14 +11,16 @@
   <% end %>
 </div>
 
-
-
+<h1></h1>
 <%# <h1>Creating the product :</h1> %>
 
 
 <h1>Creating the product :</h1>
 
-<%= link_to "New_Product", new_product_path %>
+<h1 style="border: 2px solid black;width: 200px;text-align: center;background-color: wheat;color: brown;cursor: pointer;">
+  
+  <%= link_to "New_Product", new_product_path %>
+</h1>
 
 <div id="products">
   <% @products.each do |item| %>  

@@ -58,7 +58,7 @@
 # end
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[about edit update destroy]
-
+  before_action :authenticate_user!,only: %i[about edit update destroy]
   def home
     @products = Product.all
   end
