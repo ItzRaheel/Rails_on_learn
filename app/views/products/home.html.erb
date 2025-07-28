@@ -1,7 +1,18 @@
 
 <!-- <%# <% =debug @products %> % -->
-
+ <%if user_signed_in?%>
+<h1>Wellcome <%= current_user.email%></h1>
+<%end%>
     <h1>Products</h1>
+
+<%flash.each do |key,msg| %>
+<div class="alert-alert - <%= key%>">
+     <%= msg %>
+   
+    </div>
+    <%end%>
+
+
 
 <div id="products">
   <% @products.each do |product| %>
@@ -32,7 +43,7 @@
 <%= link_to "Edit the product", edit_product_path(item.id) %>
     <%end%>
 </div>
-<%# <%= link_to "Edit the product", product_path[:id] %> %>
+<!-- <%# <%= link_to "Edit the product", product_path[:id] %> %> -->
 
 
 

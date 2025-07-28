@@ -59,7 +59,14 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[about edit update destroy]
   before_action :authenticate_user!,only: %i[about edit update destroy]
+  
   def home
+
+    if current_user&.admin?
+      @admin_content = "Wellcome Admin"
+    else
+      flash[:alert] = "not an admin"
+    end
     @products = Product.all
   end
 
@@ -74,8 +81,10 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to root_path, notice: "Product created successfully."
+      flash[:notice] = "Product created successfully."
+      redirect_to new_product_path
     else
+      flash[:alert] = "not created product"
       render :new, status: :unprocessable_entity
     end
   end

@@ -40,6 +40,33 @@ Rails.application.configure do
   # Set localhost to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings={
+  #   address: "smtp.gmail.com",
+  #   port: 587,
+  #   domain: "gmail.com",
+  #   user_name: "raheelzafar605@gmail.com",
+  #   password: "znyr fsre osfv ebps,
+  #   authentication: 'plain',
+  #   enable_starttls_auto:true
+  # }
+
+  # Looking to send emails in production? Check out our Email API/SMTP product!
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+  user_name: '485b7d07dc6237',
+  password: '08fdeba00172a2',
+  address: 'sandbox.smtp.mailtrap.io',
+  host: 'sandbox.smtp.mailtrap.io',
+  port: '2525',
+  authentication: :login
+}
+ 
+
+  config.action_mailer.perform_deliveries = true  
+  config.action_mailer.raise_delivery_errors=true
+
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
