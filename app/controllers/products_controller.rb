@@ -59,9 +59,16 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[about edit update destroy]
   before_action :authenticate_user!,only: %i[about edit update destroy]
-  
-  def home
+  load_and_authorize_resource 
 
+rescue_from CanCan::AccessDenied do |exception|
+  flash[:notice]= "Only admin can acess these  pages SHOW ,Delete,update"
+  redirect_to root_path
+end
+
+
+  def home
+    @product = Product.accessible_by(current_ability)
     if current_user&.admin?
       @admin_content = "Wellcome Admin"
     else

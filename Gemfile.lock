@@ -86,6 +86,7 @@ GEM
     brakeman (7.1.0)
       racc
     builder (3.3.0)
+    cancancan (3.6.1)
     capybara (3.40.0)
       addressable
       matrix
@@ -118,6 +119,7 @@ GEM
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
+    gem (0.0.1.alpha)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.7)
@@ -373,9 +375,11 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   brakeman
+  cancancan
   capybara
   debug
   devise
+  gem (~> 0.0.1.alpha)
   importmap-rails
   jbuilder
   kamal
