@@ -1,5 +1,32 @@
+<% @products.each do |product| %>
+  <h3><%= product.name %></h3>
+  <p><%= product.description %></p>
+
+  <% if policy(product).edit? %>
+    <%= link_to "Edit", edit_product_path(product) %>
+  <% end %>
+
+  <% if policy(product).destroy? %>
+  <%= link_to "Delete", product_path(product), method: :delete, data: { confirm: "Are you sure?" } %>
+
+  <% end %>
+<% end %>
+
+<% if policy(Product).create? %>
+  <%= link_to "New Product", new_product_path %>
+<% end %>
+
+
+
+
+
+
+
 
 <!-- <%# <% =debug @products %> % -->
+
+
+
  <%if user_signed_in?%>
 <h1>Wellcome <%= current_user.email%></h1>
 <%end%>
@@ -44,7 +71,3 @@
     <%end%>
 </div>
 <!-- <%# <%= link_to "Edit the product", product_path[:id] %> %> -->
-
-
-
-

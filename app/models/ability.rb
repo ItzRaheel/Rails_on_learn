@@ -23,7 +23,7 @@ class Ability
         # can [:read,:create,:about],Product
         # can [:update,:destroy],Product, user: user
         else
-          can [:read,:home], Product,public:true
+          can [:read,:home], Product,admin: true
         end
       
 

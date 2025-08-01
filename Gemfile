@@ -34,6 +34,7 @@ gem "cancancan"
 gem "bootsnap", require: false
 
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
+gem "pundit", "~> 2.5"
 gem "kamal", require: false
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
@@ -63,5 +64,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
 
 
