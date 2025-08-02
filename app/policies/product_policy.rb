@@ -8,8 +8,9 @@ class ProductPolicy < ApplicationPolicy
 
       if user.admin? 
         scope.all
-      else
+      else 
         scope.where(user_id: user.id)
+   
       end
     end
     
@@ -17,6 +18,9 @@ class ProductPolicy < ApplicationPolicy
     # def resolve
     #   scope.all
     # end
+  end
+  def show?
+    true
   end
   
   def about?
@@ -30,11 +34,12 @@ class ProductPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin? || record.user_id == user.id
+    user.admin? || record.user_id == user
   end
   def update?
     edit?
   end
+
 
   # NOTE: Up to Pundit v2.3.1, the inheritance was declared as
   # `Scope < Scope` rather than `Scope < ApplicationPolicy::Scope`.

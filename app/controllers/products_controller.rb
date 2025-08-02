@@ -57,8 +57,8 @@
 
 # end
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[about edit update destroy]
-  before_action :authenticate_user!,only: %i[about edit update destroy]
+  before_action :set_product, only: %i[show about edit update destroy]
+  before_action :authenticate_user!,only: %i[show about edit update destroy]
   after_action :verify_policy_scoped ,only: [:home]
   
   # load_and_authorize_resource 
@@ -71,18 +71,28 @@ class ProductsController < ApplicationController
 
   def home
     # @product = Product.accessible_by(current_ability)
+     
     if current_user&.admin?
       @admin_content = "Wellcome Admin"
     else
       flash[:alert] = "not an admin"
+   
     end
+
+    @pagy,@products =pagy(policy_scope(Product))
     
     # @products = Product.all
-    @products = policy_scope(Product)
+    # @products = policy_scope(Product)
     #  @publications = ApplicationPolicy::Scope.new(current_user, Product).resolve
     # @product = policy_scope(Product)
-
+    
   end
+  def show
+    authorize @product
+
+    # @product is set by before_action
+  end
+  
 
   def about
     

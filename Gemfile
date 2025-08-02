@@ -29,6 +29,8 @@ gem "solid_queue"
 gem "solid_cable"
 gem "devise"
 gem "cancancan"
+gem 'pagy'
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
