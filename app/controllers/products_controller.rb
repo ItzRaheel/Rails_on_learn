@@ -72,14 +72,23 @@ class ProductsController < ApplicationController
   def home
     # @product = Product.accessible_by(current_ability)
      
-    if current_user&.admin?
+    if current_user&.has_role?(:admin)
       @admin_content = "Wellcome Admin"
-    else
-      flash[:alert] = "not an admin"
-   
-    end
+    elsif current_user&.has_role?(:user)
+      flash[:alert] = "Wellcome to user"
+    else 
+      flash[:alert] = "Wellcome to Guest"
 
-    @pagy,@products =pagy(policy_scope(Product))
+    end  
+    # if current_user&.admin?
+    #   @admin_content = "Wellcome Admin"
+    # else
+    #   flash[:alert] = "not an admin"
+   
+    # end
+
+    @pagy,@products =pagy(policy_scope(Product),items: 4)
+    # @pagy,@products =pagy(Product.all, items: 4)
     
     # @products = Product.all
     # @products = policy_scope(Product)

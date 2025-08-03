@@ -1,23 +1,28 @@
 <!-- <% @products.each do |product| %>
   <h3><%= product.name %></h3>
   <p><%= product.description %></p>
-
+  
   <% if policy(product).edit? %>
-    <%= link_to "Edit", edit_product_path(product) %>
+  <%= link_to "Edit", edit_product_path(product) %>
   <% end %>
-
+  
   <% if policy(product).destroy? %>
   <%= link_to "Delete", product_path(product), method: :delete, data: { confirm: "Are you sure?" } %>
-
+  
   <% end %>
-<% end %>
-
-<% if policy(Product).create? %>
+  <% end %>
+  
+  <% if policy(Product).create? %>
   <%= link_to "New Product", new_product_path %>
-<% end %>
- -->
+  <% end %>
+  -->
+  
+   <%if user_signed_in?%>
+  <h1>Wellcome <%= current_user.email%></h1>
+  <%end%>
+  <!-- <%== pagy_nav(@pagy)%> -->
 
-<% @products.each do |product| %>
+  <% @products.each do |product| %>
   <div class="product">
     <h3><%= product.name %></h3>
     <p><%= product.description %></p>
@@ -26,13 +31,13 @@
     <%= link_to "View", product_path(product) %>
     
     <% if policy(product).edit? %>
-      <%= link_to "Edit", edit_product_path(product) %>
+    <%= link_to "Edit", edit_product_path(product) %>
     <% end %>
     
     <% if policy(product).destroy? %>
       <%= link_to "Delete", product_path(product), method: :delete, 
           data: { confirm: "Are you sure?" } %>
-    <% end %>
+          <% end %>
   </div>
 <% end %>
 
@@ -42,15 +47,10 @@
 
 
 
-<%== pagy_nav(@pagy)%>
 
 <!-- <%# <% =debug @products %> % -->
 
 
-
- <%if user_signed_in?%>
-<h1>Wellcome <%= current_user.email%></h1>
-<%end%>
     <h1>Products</h1>
 
 <%flash.each do |key,msg| %>
@@ -60,9 +60,15 @@
     </div>
     <%end%>
 
+    <div>
+      <% if user_signed_in? %>
+      <%== pagy_bootstrap_nav(@pagy) %>
+      <%== pagy_info(@pagy) %>
+    </div>  
+    <%end%>
 
-
-<div id="products">
+    
+    <div id="products">
   <% @products.each do |product| %>
     <div>
       <%= link_to product.name, product_about_path(product.id) %>
@@ -76,14 +82,14 @@
 
 <h1>Creating the product :</h1>
 
-<h1 style="border: 2px solid black;width: 200px;text-align: center;background-color: wheat;color: brown;cursor: pointer;">
+<h1 style="border: 2px solid black;width: 300px;text-align: center;background-color: wheat;color: brown;cursor: pointer;text-decoration:dotted;">
   
   <%= link_to "New_Product", new_product_path %>
 </h1>
 
 <div id="products">
   <% @products.each do |item| %>  
-
+  
   <div style= "border:1px solid gray;padding:10px;margin-bottom:10px;">
     <%= link_to item.name, product_about_path(item.id) %>  
     <p><%= item.description %> </p>  

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   has_many :products
 
   # Rails 8.0.2 compatible enum syntax
@@ -10,6 +11,13 @@ class User < ApplicationRecord
   def set_default_role
     self.role ||= "user"
   end
+
+  after_create :assign_role
+  def assign_role
+    self.add_role(:user) if self.role.blank?
+  end
+  
+
 
   # Devise modules
   devise :database_authenticatable, :registerable,

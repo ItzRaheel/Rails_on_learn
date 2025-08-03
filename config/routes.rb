@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   # get "products/about"
   # root "products#login"
   root "products#home"
+  namespace :api do 
+    namespace :v1 do
+      resources :products
+    end
+  end
   
   resources :products
 

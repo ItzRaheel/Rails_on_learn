@@ -4,14 +4,20 @@ class ProductPolicy < ApplicationPolicy
 
   
     def resolve
-      return scope.none unless user
+      # return scope.none unless user
 
-      if user.admin? 
-        scope.all
-      else 
-        scope.where(user_id: user.id)
+      # if user.has_role?(:admin)
+      #   scope.all
+      # elsif user.has_role?(:user)
+
+      #   scope.all
+        
+      # else
+      # scope.where(user_id: user.id)
    
-      end
+      # end
+        scope.all
+      
     end
     
     # NOTE: Be explicit about which records you allow access to!
@@ -19,22 +25,28 @@ class ProductPolicy < ApplicationPolicy
     #   scope.all
     # end
   end
+  def home?
+    true
+  end
   def show?
     true
   end
-  
   def about?
     true
   end
   def create?
-    user.present?
+    user&.has_role?(:admin)|| user&.has_role?(:user)
   end
   def edit? 
-    user.admin? || record.user_id == user.id
+    return true if user&.has_role?(:admin)
+    user&.has_role?(:user) && record.user_id = user.id
+    # user.admin? || record.user_id == user.id
   end
 
   def destroy?
-    user.admin? || record.user_id == user
+      return true if user&.has_role?(:admin)
+    user&.has_role?(:user) && record.user_id = user.id
+    # user.admin? || record.user_id == user
   end
   def update?
     edit?

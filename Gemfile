@@ -30,6 +30,12 @@ gem "solid_cable"
 gem "devise"
 gem "cancancan"
 gem 'pagy'
+gem 'rolify'
+
+# In your Gemfile, depending on which extras you're using:
+
+
+# For specific extras, you might need:
 
 
 # Reduces boot times through caching; required in config/boot.rb
