@@ -15,6 +15,8 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '3f57781f13e0b884f578381b7a6392978e01dc0ded8c35ed31937965e2d7d49f3ee754c66da0a0f508f514f39469c67ad5258d86338c0fd323aef5b19427c060'
+# Only respond to JSON (important for API)
+config.navigational_formats = []
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -25,6 +27,8 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'raheelzafar@gmail.com'
+
+  Rails.application.config.session_store :cookie_store, key: '_your_app_session'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

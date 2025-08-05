@@ -128,7 +128,20 @@ class ProductsController < ApplicationController
       flash[:alert] = "not created product"
       render :new, status: :unprocessable_entity
     end
+  enddef create
+  begin
+    @product = Product.new(product_params)
+    
+    if @product.save
+      render json: @product, status: :created
+    else
+      render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
+    end
+  rescue => e
+    Rails.logger.error "Product creation error: #{e.message}"
+    render json: { error: "Internal server error: #{e.message}" }, status: :internal_server_error
   end
+end
 
   def edit
     authorize @product

@@ -1,6 +1,6 @@
 class Api::V1::ProductsController < ApplicationController
- before_action :set_product, only: [:show, :update, :destroy]
-
+ before_action :authenticate_user!
+  before_action :set_product, only: [:show, :update, :destroy]
   # GET /api/v1/products
   def index
     @products = Product.all
@@ -9,14 +9,24 @@ class Api::V1::ProductsController < ApplicationController
 
   # GET /api/v1/products/:id
   def show
-    authorize @product
     render json: @product, status: :ok
   end
 
   # POST /api/v1/products
+#   def create
+  
+#     @product = Product.new(product_params)
+    
+#     if @product.save
+#       render json: @product, status: :created
+#     else
+#       render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
+#     end
+  
+ 
+# end
   def create
-    @product = current_user.products.build(product_params)
-    authorize @product
+    @product = Product.new(product_params)
 
     if @product.save
       render json: @product, status: :created
@@ -27,7 +37,6 @@ class Api::V1::ProductsController < ApplicationController
 
   # PUT/PATCH /api/v1/products/:id
   def update
-    authorize @product
 
     if @product.update(product_params)
       render json: @product, status: :ok
@@ -38,7 +47,6 @@ class Api::V1::ProductsController < ApplicationController
 
   # DELETE /api/v1/products/:id
   def destroy
-    authorize @product
 
     if @product.destroy
       render json: { message: "Product deleted successfully" }, status: :ok

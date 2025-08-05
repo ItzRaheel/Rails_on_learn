@@ -31,7 +31,7 @@ gem "devise"
 gem "cancancan"
 gem 'pagy'
 gem 'rolify'
-
+gem 'active_model_serializers'
 # In your Gemfile, depending on which extras you're using:
 
 
