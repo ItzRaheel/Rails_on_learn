@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   rolify
-  has_many :products
+  has_many :products, dependent: :destroy
 
   # Rails 8.0.2 compatible enum syntax
   enum :role, { user: "user", admin: "admin", moderator: "moderator" }
@@ -18,8 +18,17 @@ class User < ApplicationRecord
   end
   
 
+def self.jwt_revoked?(playload,user)
+  false
+end
+def self.revoke_jwt(playload,user)
+
+end
 
   # Devise modules
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :jwt_authenticatable,jwt_revocation_strategy: self
+
+
 end

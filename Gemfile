@@ -32,6 +32,8 @@ gem "cancancan"
 gem 'pagy'
 gem 'rolify'
 gem 'active_model_serializers'
+gem 'devise-jwt'
+gem 'jwt'
 # In your Gemfile, depending on which extras you're using:
 
 

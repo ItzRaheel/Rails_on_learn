@@ -18,6 +18,30 @@ Devise.setup do |config|
 # Only respond to JSON (important for API)
 config.navigational_formats = []
 
+
+# config.jwt do |jwt|
+#   jwt.secret = Rails.application.credentials.secret_key_base
+#   jwt.dispatch_requests = [
+#     ['POST',%{^.login$}],
+#     ['POST', %r{^/signup$} ]
+    
+#   ]
+#   jwt.revocation_requests = [
+#     ['DELETE',%{^/logout$}]
+#   ]
+# jwt.expiration_time = 2.hours.to_i
+ config.jwt do |jwt|
+    jwt.secret = Rails.application.credentials.secret_key_base
+    jwt.dispatch_requests = [
+      ['POST', %r{^/api/v1/auth/login$}],    # API login
+      ['POST', %r{^/api/v1/auth/signup$}]   # API signup
+    ]
+    jwt.revocation_requests = [
+      ['DELETE', %r{^/api/v1/auth/logout$}] # API logout
+    ]
+    jwt.expiration_time = 2.hours.to_i
+  
+end
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
