@@ -93,6 +93,19 @@ Rails.application.routes.draw do
              }
   
   # API routes
+
+require 'sidekiq/web'
+mount Sidekiq::Web => '/sidekiq'
+
+resources :products, only: [:index] do
+  collection do
+    post :import_from_api   # for importing via Sidekiq job
+    get :home               # optional custom home route
+  end
+end
+
+
+
   namespace :api do 
     namespace :v1 do
       # Fix: Remove the extra api/v1 prefix from controller names
@@ -105,7 +118,8 @@ Rails.application.routes.draw do
       resources :products
     end
   end
-  
+  post '/products/import', to: 'products#import_from_api'
+
   # Web resources
   resources :products
   get "/home", to: "products#home"

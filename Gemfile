@@ -34,6 +34,9 @@ gem 'rolify'
 gem 'active_model_serializers'
 gem 'devise-jwt'
 gem 'jwt'
+gem 'sidekiq'
+gem 'httparty'
+
 # In your Gemfile, depending on which extras you're using:
 
 

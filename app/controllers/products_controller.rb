@@ -86,7 +86,8 @@ class ProductsController < ApplicationController
     #   flash[:alert] = "not an admin"
    
     # end
-
+  response = HTTParty.get("https://fakestoreapi.com/products")
+  @products = response.parsed_response
     @pagy,@products =pagy(policy_scope(Product),items: 4)
     # @pagy,@products =pagy(Product.all, items: 4)
     
@@ -166,6 +167,10 @@ end
 
     @product.destroy
     redirect_to root_path, notice: "Product deleted successfully."
+  end
+  def import_from_api
+    ProductApiJob.perform_async
+   redirect_to products_path, notice: "Product import started in background."
   end
 
   private
